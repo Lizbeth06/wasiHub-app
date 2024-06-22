@@ -1,0 +1,54 @@
+<div class="row mt-4">
+  <div class="col-lg- col-md-12">
+    <mat-toolbar class="white-toolbar">
+      <img src="assets/img/logo1.png" alt="WasiHub Logo" class="logo">
+      <span>WasiHub</span>
+
+      <!-- Menu for larger screens -->
+      <div class="center-menu" fxHide fxShow.gt-sm>
+        <button mat-button class="nav-item">Alojamiento</button>
+        <button mat-button class="nav-item">Voluntariados</button>
+        <button mat-button class="nav-item">Comunidades</button>
+      </div>
+
+      <!-- Menu for smaller screens -->
+      <div fxHide fxShow.lt-md>
+        <button mat-icon-button [matMenuTriggerFor]="mobileMenu" class="icon-button">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #mobileMenu="matMenu">
+          <button mat-menu-item>Alojamiento</button>
+          <button mat-menu-item>Voluntariados</button>
+          <button mat-menu-item>Comunidades</button>
+        </mat-menu>
+      </div>
+
+      <button mat-button class="nav-item">Ofrece tu espacio</button>
+      <button mat-icon-button [matMenuTriggerFor]="languageMenu" class="icon-button">
+        <mat-icon>language</mat-icon>
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item>Inglés</button>
+        <button mat-menu-item>Portugués</button>
+        <button mat-menu-item>Español</button>
+      </mat-menu>
+      <button mat-button class="nav-item">Regístrese</button>
+
+      <!-- Menú desplegable para el icono de usuario -->
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="menú de usuario">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item>Mensajes</button>
+        <button mat-menu-item>Notificaciones</button>
+        <button mat-menu-item>Viajes</button>
+        <button mat-menu-item>Lista de favoritos</button>
+        <button mat-menu-item>Cuenta</button>
+        <button mat-menu-item>Centro de ayuda</button>
+        <button mat-menu-item>Cerrar sesión</button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

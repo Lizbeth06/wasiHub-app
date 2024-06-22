@@ -1,0 +1,62 @@
+/* Buscador */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Ajusta esta distancia según sea necesario */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  max-width: 100%;
+  border: 2px solid #cccccc; /* Aquí agregas el borde, puedes ajustar el color y grosor */
+}
+
+.search-section {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+}
+
+.search-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #717171;
+}
+
+.search-section input {
+  border: none;
+  outline: none;
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+.search-button {
+  background: hsl(145, 100%, 61%);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-container {
+  display: flex;
+  justify-content: flex-start; /* Alinea el contenido a la izquierda */
+  padding: 0; /* Elimina el padding para evitar espacio innecesario */
+  margin-top: 20px; /* Ajusta el margen superior según tu diseño */
+}
+
+.map-container iframe {
+  width: 50%; /* Ocupa el 50% del ancho del contenedor */
+  height: 200px; /* Ajusta la altura según tus necesidades */
+  border: 1px solid #ddd; /* Borde ligero */
+  border-radius: 10px; /* Bordes redondeados */
+}
