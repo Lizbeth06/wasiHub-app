@@ -21,12 +21,14 @@
   display: flex;
   flex-direction: column;
   margin: 0 10px;
+  overflow: hidden; 
 }
 
 .search-label {
   font-size: 12px;
   font-weight: bold;
   color: #717171;
+  overflow: hidden; 
 }
 
 .search-section input {
@@ -34,10 +36,13 @@
   outline: none;
   padding: 5px 0;
   font-size: 14px;
+  overflow: hidden; 
+  border-radius: 10px; /* Ajusta este valor para redondear los bordes */
 }
 
+
 .search-button {
-  background: hsl(145, 100%, 61%);
+  background: hsl(145, 89%, 38%);
   color: #fff;
   border-radius: 50%;
   width: 40px;
@@ -47,16 +52,707 @@
   align-items: center;
 }
 
-.map-container {
-  display: flex;
-  justify-content: flex-start; /* Alinea el contenido a la izquierda */
-  padding: 0; /* Elimina el padding para evitar espacio innecesario */
-  margin-top: 20px; /* Ajusta el margen superior según tu diseño */
+.rounded-iframe {
+  border-radius: 15px;
+  overflow: hidden; /* Esto asegura que el contenido se ajuste a los bordes redondeados */
 }
 
-.map-container iframe {
-  width: 50%; /* Ocupa el 50% del ancho del contenedor */
-  height: 200px; /* Ajusta la altura según tus necesidades */
-  border: 1px solid #ddd; /* Borde ligero */
+/* Estilo para el input */
+.search-section input {
+  border: none;
+  outline: none;
+  padding: 5px 0;
+  font-size: 14px;
+  overflow: hidden; 
   border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Espacio entre la tarjeta y el mapa */
+.container {
+  margin-top: 20px; /* Ajusta este valor según sea necesario */
+}
+
+.rounded-iframe {
+  margin-bottom: 50px; /* Espacio entre el iframe y el siguiente elemento */
+}
+
+.rounded-iframe iframe {
+  border-radius: 10px; /* Ajusta este valor según tus necesidades */
+  border: 2px solid #cccccc;
+}
+
+
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+/* basic article elements styling */
+article h2 {
+  margin: 0 0 18px 0;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28666e;
+}
+
+article a:focus {
+  outline: 1px dotted #28666e;
+}
+
+article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+
+/************************ 
+Generic layout (demo looks)
+**************************/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 48px 0;
+  font-family: "Figtree", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  background-image: linear-gradient(45deg, #7c9885, #b5b682);
+  min-height: 100vh;
+}
+
+.articles {
+  display: grid;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+@media screen and (max-width: 960px) {
+  article {
+    container: card/inline-size;
+  }
+  .article-body p {
+    display: none;
+  }
+}
+
+@container card (min-width: 380px) {
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 16px;
+  }
+  .article-body {
+    padding-left: 0;
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  figure img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}
+
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+:root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #fef8f8;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 4rem 5vw;
+  padding: 0;
+  list-style-type: none;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;  
+  border-radius: calc(var(--curve) * 1px);
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.card__image {      
+  width: 100%;
+  height: auto;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;      
+  border-radius: calc(var(--curve) * 1px);    
+  background-color: var(--surface-color);      
+  transform: translateY(100%);
+  transition: .2s ease-in-out;
+}
+
+.card:hover .card__overlay {
+  transform: translateY(0);
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+  border-radius: calc(var(--curve) * 1px) 0 0 0;    
+  background-color: var(--surface-color);
+  transform: translateY(-100%);
+  transition: .2s ease-in-out;
+}
+
+.card__arc {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: 100%;
+  right: 0;      
+  z-index: 1;
+}
+
+.card__arc path {
+  fill: var(--surface-color);
+  d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+}       
+
+.card:hover .card__header {
+  transform: translateY(0);
+}
+
+.card__thumb {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;      
+  border-radius: 50%;      
+}
+
+.card__title {
+  font-size: 1em;
+  margin: 0 0 .3em;
+  color: #f2f2f2;
+}
+
+.card__tagline {
+  display: block;
+  margin: 1em 0;
+  font-family: "MockFlowFont";  
+  font-size: .8em; 
+  color: #D7BDCA;  
+}
+
+.card__status {
+  font-size: .8em;
+  color: #2717b8;
+}
+
+.card__description {
+  padding: 0 2em 2em;
+  margin: 0;
+  color: #dbdbdb;
+  font-family: "MockFlowFont";   
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}    
+
+
+.card {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  text-decoration: none;
+  color: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card__image {
+  width: 100%;
+  height: auto;
+}
+
+.card__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 20px;
+  border-radius: 0 0 10px 10px;
+  transition: background 0.3s;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__header-text {
+  flex: 1;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 1.5em;
+  color: #f5f5f1e7; /* Color amarillo claro para mayor visibilidad */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Añade sombra al texto */
+}
+
+
+.card__status {
+  font-size: 0.9em;
+  color: #d6d6d4e3; /* Color amarillo claro para mayor visibilidad */
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Añade sombra al texto */
+}
+
+.card__price {
+  position: absolute;
+  top: 0px; /* Ajusta la distancia desde la parte superior */
+  right: 10px;
+  background: #2c3e50; 
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.card__description {
+  margin-top: 10px;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+/* basic article elements styling */
+article h2 {
+  margin: 0 0 18px 0;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.article-body {
+  padding: 24px;
+}
+
+article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28666e;
+}
+
+article a:focus {
+  outline: 1px dotted #28666e;
+}
+
+article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.article-wrapper {
+  position: relative;
+}
+
+.star-rating {
+  position: absolute;
+  top: 420px; /* Ajusta la posición verticalmente según sea necesario */
+  right: 10px; /* Ajusta la posición horizontalmente según sea necesario */
+  display: flex;
+  align-items: center;
+  color: #0e0d0d; /* Color de las estrellas */
+}
+
+.star-rating .fa {
+  font-size: 18px; /* Tamaño del icono de estrella */
+}
+
+.rating-num {
+  margin-left: 5px; /* Espacio entre el icono y el número de calificación */
+}
+
+.like-icon {
+  position: absolute;
+  top: 10px; /* Ajustar según la posición deseada */
+  right: 10px; /* Ajustar según la posición deseada */
+  z-index: 1; /* Asegura que esté sobre el contenido */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+}
+
+.like-icon svg {
+  width: 32px; /* Tamaño del icono */
+  height: 32px; /* Tamaño del icono */
+  stroke: #ffffff; /* Color del borde */
+  fill: rgba(30, 39, 46, 0.7); /* Fondo semitransparente */
+}
+
+.people-icon {
+  position: absolute;
+  top: 10px; /* Ajustar según la posición deseada */
+  left: 10px; /* Ajustar según la posición deseada */
+  z-index: 1; /* Asegura que esté sobre el contenido */
+  color: #ffffff; /* Color del icono */
+  font-size: 24px; /* Tamaño del icono */
+}
+
+.article-wrapper {
+  position: relative;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.article-body h2 {
+  font-size: 1rem; /* Ajustar el tamaño de fuente para que sea igual al de "Ayacucho, Peru" */
+  margin-bottom: 5px; /* Reducir el margen inferior */
+  margin-right: 10px; /* Espacio entre el título y el icono de estrellas */
+}
+
+.article-body p {
+  margin-top: 5px; /* Reducir el margen superior */
+}
+
+.like-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.star-icon {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.star-icon svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+.star-icon .rating-num {
+  font-size: 16px;
+  color: black; /* Color del número de calificación */
+}
+
+.icon i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.overlay {
+  position: absolute;
+  top: 10px; /* Ajustar según la posición deseada */
+  left: 10px; /* Ajustar según la posición deseada */
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  z-index: 1; /* Asegura que esté sobre la imagen */
+}
+
+.overlay p {
+  margin: 0;
+}
+
+.article-body {
+  padding: 18px; /* Espaciado interno del cuerpo del artículo */
+}
+
+.article-body h2 {
+  font-size: 1rem; /* Ajustar el tamaño de fuente para que sea igual al de "Ayacucho, Peru" */
+  margin-bottom: 5px; /* Reducir el margen inferior */
+}
+
+.icon-container {
+  margin-top: 10px;
+}
+.icon {
+  display: inline-block;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+
+.icon i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.article-body {
+  padding: 0 24px 24px; /* Ajusta el padding según necesites */
+  margin: 0; /* Asegura que no haya margen externo */
+}
+
+.icon {
+  margin-right: 10px; /* Espacio entre el icono de tiempo y el texto */
+}
+/* Estilo para el icono de tiempo */
+.icon i.fas.fa-clock {
+  font-size: 16px; /* Tamaño del icono de tiempo */
+}
+
+/* Estilo para el texto de 2 horas */
+.info-text span {
+  font-size: 14px; /* Tamaño del texto "2 horas" */
+}
+
+/* Estilo para el texto de Voluntariado y Agrupar personas */
+.info-text div {
+  font-size: 12px; /* Tamaño del texto de voluntariado y agrupar personas */
+}
+
+/* Estilo para la calificación */
+.star-rating {
+  font-size: 14px; /* Tamaño de la calificación */
+}
+
+/* Estilo para "Leer más" */
+.read-more {
+  margin-top: 8px; /* Espacio sobre "Leer más" */
+}
+
+.overlay p {
+  font-weight: 600; /* o el valor que prefieras */
+}
+
+/* Estilos para el contenedor del carrusel */
+.carousel-container {
+  background-color: #ffffff; /* Color de fondo del carrusel */
+  border: 1px solid #dddddd; /* Borde del carrusel */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espaciado interno */
+  margin-top: 20px; /* Espaciado superior */
+}
+
+/* Estilos para los íconos */
+.icon-box {
+  text-align: center;
+  margin-bottom: 20px; /* Espacio inferior entre íconos */
+}
+
+.icon-box i {
+  font-size: 1.5rem; /* Tamaño del ícono */
+}
+
+.icon-box p {
+  margin-top: 10px; /* Espacio superior para el texto debajo del ícono */
+}
+
+/* Estilos para las flechas del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%; /* Ancho de las flechas */
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1); /* Invertir el color de las flechas */
+}
+
+.carousel-control-prev-icon {
+  margin-right: 5px; /* Espacio a la derecha del ícono */
+}
+
+.carousel-control-next-icon {
+  margin-left: 5px; /* Espacio a la izquierda del ícono */
+}
+
+.map-container {
+  margin-bottom: 0px; /* Margen inferior para separar el mapa del buscador */
+}
+
+/* Estilos para el contenedor del buscador */
+.search-container {
+  margin-bottom: 20px; /* Espacio entre el buscador y el siguiente elemento */
+}
+
+/* Estilos para el contenedor del mapa */
+.map-container {
+  margin-top: 20px; /* Espacio entre el mapa y el elemento anterior */
+}
+
+.container {
+  padding: 20px; /* Padding general para todos los lados */
+}
+
+.search-bar {
+  margin-bottom: 20px; /* Márgen inferior para separar del mapa */
+}
+
+.map-container {
+  margin-top: 36px; /* Márgen superior para separar del buscador */
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col {
+  flex: 1 0 25%; /* Esto hace que cada columna ocupe el 25% del ancho disponible */
+  padding: 10px;
+  box-sizing: border-box;
 }
